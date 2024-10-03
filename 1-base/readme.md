@@ -121,16 +121,16 @@ Une variable associée à **null** mal utilisée peut entrainer l'exception **Nu
 
 Java n'est pas un lanqage purement objet. 8 primitives sont mises à disposition au déceloppeur.
 
-| Catégorie | Type      | Taille         | Signé    | Min               | Max                                  
-|-----------|-----------|----------------|----------|-------------------|--------------------------------------
-|           | byte      | 2<sup>8</sup>  | signed   | -128              | 127                                  
-|           | char      | 2<sup>16</sup> | unsigned | 0                 | 2<sup>16</sup>-1                     
-| Entier    | short     | 2<sup>16</sup> | signed   | -2<sup>15</sup>   | 2<sup>15</sup>-1                     
-|           | int       | 2<sup>32</sup> | signed   | 2<sup>2</sup>     | 2<sup>31</sup>-1                     
-|           | long      | 2<sup>64</sup> | signed   | -2<sup>63</sup>   | 2<sup>63</sup>-1                     
-| Decimaux  | float     | 2<sup>32</sup> | signed   | 2<sup>-149</sup>  | (2 - 2<sup>23</sup>)2<sup>167</sup>  
-|           | double    | 2<sup>64</sup> | signed   | 2<sup>-1074</sup> | (2 - 2<sup>52</sup>)2<sup>1023</sup> 
-| Autre     | boolean   |                |          |                                      |
+| Catégorie | Type      | Taille         | Signé    | Min                     | Max                                  
+|-----------|-----------|----------------|----------|-------------------------|--------------------------------------
+|           | byte      | 2<sup>8</sup>  | signed   | -128                    | 127                                  
+|           | char      | 2<sup>16</sup> | unsigned | 0                       | 2<sup>16</sup>-1                     
+| Entier    | short     | 2<sup>16</sup> | signed   | -2<sup>15</sup>         | 2<sup>15</sup>-1                     
+|           | int       | 2<sup>32</sup> | signed   | 2<sup>2</sup>           | 2<sup>31</sup>-1                     
+|           | long      | 2<sup>64</sup> | signed   | -2<sup>63</sup>         | 2<sup>63</sup>-1                     
+| Decimaux  | float     | 2<sup>32</sup> | signed   | -3.4 * 10<sup>38</sup>  | 3.4 * 10<sup>38</sup> 
+|           | double    | 2<sup>64</sup> | signed   | -1.8 * 10<sup>308</sup> | 1.8 * 10<sup>308</sup> 
+| Autre     | boolean   |                |          |                         |
 
 
 ### Le mot clé *var*
