@@ -44,6 +44,7 @@ public class Exemple2 {
 ```
 
 ```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Exemple2
 Type de la variable phrase :  class java.lang.String
 ```
 
@@ -89,6 +90,7 @@ public class Exemple3 {
 ```
 
 ```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Exemple3
 23
 [Java, c'est, plutôt, sympa]
 JavaScript c'est plutôt sympa

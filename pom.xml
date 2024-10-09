@@ -14,6 +14,7 @@
         <module>3-String</module>
         <module>4-Classes</module>
         <module>5-Collection</module>
+        <module>99-tools</module>
     </modules>
 
     <properties>
