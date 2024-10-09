@@ -1,5 +1,7 @@
 # Introduction
 
+-----
+
 ## Helloworld
 
 Pour démarrer l'apprentissage d'un programme rien de tel que l'écriture du fameux HelloWorld.
@@ -61,6 +63,12 @@ public class Variables1 {
 }
 ```
 
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Variables1
+Le nombre magique est 62
+Le nombre magique est 62
+````
+
 Il est tout à fait possible de déclarer puis par la suite assigner une valeur à cette variable.
 
 Fichier **[Variables2.java](src/main/java/Variables2.java)**
@@ -79,6 +87,11 @@ public class Variables2 {
     }
 }
 ```
+
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Variables2
+Un langage toujours au top : Java
+````
 
 > tant qu'une variable, déclarée dans le corps d'une méthode, n'est pas assignée à une valeur, elle ne peut pas être utilisée.
 
@@ -155,6 +168,12 @@ public class Variables4 {
 
 ```
 
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Variables4
+birthday :  java.lang.Integer, author : java.lang.String
+Java est apparu en 1995 et un des auteurs est James Gosling
+```
+
 ## Loop et conditions
 
 ### if / else if / else
@@ -190,6 +209,11 @@ public class Condition1 {
 }
 ```
 
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Condition1
+La variable age1 (25) est à une valeur inférieure à la variable age2 
+```
+
 
 Le mot clé **else** permet d'exécuter le second bloc d'instructions dans le cas où la condition du **if** n'est pas réalisée.
 
@@ -208,6 +232,11 @@ public class Condition2 {
     }
 }
 
+```
+
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Condition2
+Le nombre (19) est un nombre impair 
 ```
 
 En utilisant **else if**, il est possible d'enchainer des tests conditionnels et associant un bloc d'instructions à chaque test. 
@@ -234,6 +263,11 @@ public class Condition3 {
 }
 ```
 
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Condition3
+Angle aigu
+```
+
 > dans le cas d'une succession de **else if**, le mot clé seul **else** sera toujours à la fin de cette succession.
 
 ### for
@@ -255,7 +289,8 @@ public class Looping1 {
 ```
 Le bloc de code contenant l'instruction `System.out.printf("Hello %d ! \n", index);` est executé 5 fois (index pouvant varié de 0 à 4)
 
-```sh
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Looping1
 Hello 0 ! 
 Hello 1 ! 
 Hello 2 ! 
@@ -299,6 +334,15 @@ public class Looping2 {
 
 ```
 
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Looping2
+Le nombre 0 est un nombre pair.
+Le nombre 1 est un nombre impair.
+Le nombre 2 est un nombre pair.
+Le nombre 3 est un nombre impair.
+Le nombre 4 est un nombre pair.
+```
+
 il est possible d'utiliser l'operateur ternaire à la place du mot clé **if**
 
 Fichier **[Looping3.java](src/main/java/Looping3.java)**
@@ -314,6 +358,15 @@ public class Looping3 {
     }
 }
 
+```
+
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Looping3
+Le nombre 0 est un nombre pair.
+Le nombre 1 est un nombre impair.
+Le nombre 2 est un nombre pair.
+Le nombre 3 est un nombre impair.
+Le nombre 4 est un nombre pair.
 ```
 
 ### While
@@ -335,6 +388,11 @@ public class Looping4 {
         System.out.printf("Inc : %d, Total : %d", inc, total);
     }
 }
+```
+
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Looping4
+Inc : 6, Total : 24
 ```
 
 > il éxiste également l'instruction **do ...while()**. Le bloc d'instructions sera toujours évalué **au moins une fois**
@@ -387,6 +445,12 @@ public class Methode1 {
 }
 
 ```
+
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Methode1
+Hello Bob !
+```
+
 Elle peut également retourner une donnée. Danc il faut indiquer dans la signature le type (primitif ou classe) que va retourner la méthode
 
 Fichier **[Methode2.java](src/main/java/Methode2.java)**
@@ -404,6 +468,10 @@ public class Methode2 {
 }
 ```
 
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Methode2
+Somme 10 + 7 : 27
+```
 
 Depuis Java5, il est possible de déclarer un nombre infini de paramétre. On parle alors de **vararg**
 Un seul vararg est autorisé par méthode et il doit être le dernier paramétre. 
@@ -430,6 +498,12 @@ public class Methode3 {
     }
 }
 
+```
+
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Methode3
+Sousoutraction : -13
+Sousoutraction : -17
 ```
 
 > Les exemples ci-dessus utilisent la notion de vararg. En effet, la méthode **System.out.printf** est uné méthode avec un vararg.
