@@ -2,6 +2,7 @@ import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.html.simpleparser.HTMLWorker;
 import com.lowagie.text.pdf.PdfWriter;
+import com.vladsch.flexmark.ext.gitlab.GitLabExtension;
 import com.vladsch.flexmark.formatter.Formatter;
 import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
@@ -18,16 +19,22 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 public class PdfGen {
     static final DataHolder OPTIONS = PegdownOptionsAdapter.flexmarkOptions(
-            Extensions.ALL
+            Extensions.ALL, GitLabExtension.create()
     ).toImmutable();
 
     public static void main(String[] args) throws Exception {
-        String markdownContent = Files.readString(Path.of("./readme.md"));
+        String markdownContent = Files.readString(Path.of("./4-Classes/readme.md"));
         var converted = convertMarkdownToHtml(markdownContent);
+
+        System.out.println(markdownContent);
         //convertHtmlToPdf(converted, Path.of("./99-tools/target/file1.pdf"));
+        var extensions= new ArrayList<>(Parser.EXTENSIONS.get(OPTIONS));
+        extensions.add(GitLabExtension.create());
+
         PdfConverterExtension.exportToPdf(new FileOutputStream(Path.of("./99-tools/target/file1.pdf").toFile()), converted, "", OPTIONS);
     }
 
@@ -35,7 +42,10 @@ public class PdfGen {
         MutableDataSet options = new MutableDataSet();
         options.set(HtmlRenderer.INDENT_SIZE, 1);
         options.setFrom(ParserEmulationProfile.KRAMDOWN);
-        options.set(Parser.EXTENSIONS, Parser.EXTENSIONS.get(OPTIONS))
+
+        var extensions= new ArrayList<>(Parser.EXTENSIONS.get(OPTIONS));
+        extensions.add(GitLabExtension.create());
+        options.set(Parser.EXTENSIONS, extensions)
                 .set(Formatter.DEFAULT_LINK_RESOLVER, true);
 
         //options.set(Parser.EXTENSIONS, Arrays.asList(TablesExtension.create(), StrikethroughExtension.create()));
