@@ -1,6 +1,4 @@
-# Programmation Orienté Objet
-
-----
+# Programmation Orientée Objet
 
 La programmation Orientée Objet est une des concepts principaux du langage Java.
 
@@ -111,6 +109,7 @@ Pour notre classe **AirPlane**, le constructeur suivant initialisera la marque e
     }
 ```
 
+
 > le mot clé **this** permet d'accéder à l'instance de la classe c'est à dire à l'objet que nous sommes entrain d'initialiser. Suivi du **.**, il permet d'accéder aux propriétés et au méthodes de l'instance.
 > le mot clé **this** sera disponible dés que l'on accéder à des méthodes d'instance.
 
@@ -194,7 +193,7 @@ public class Main3 {
 }
 ```
 
-Le tablea montre l'évolution de la vitesse de l'instance **a310**.
+Le tableau montre l'évolution de la vitesse de l'instance **a310**.
 
  Etat 1                   | Etat 2                                    | Etat 3                                    |
  -------------------------|-------------------------------------------|-------------------------------------------|
@@ -270,3 +269,226 @@ mvn --quiet compile exec:java -Dexec.mainClass=Main5
 L'instance b777 est associé au modele : B777
 ```
 
+## L'héritage
+
+L'héritage est la capacité d'une classe  d’être créée à partir d’une autre classe en l’étendant.
+Ce principe permet d'éviter de dupliquer le code et de factoriser le code en commun dans une classe dite mère.
+
+Les classes héritantes d'une autre classe héritent des comportements de la classe héritée. 
+
+Les classes héritante sont dites des classes filles et peuvent définir : 
+- de nouvelles propriétés
+- de nouvelles méthodes.
+
+Les classes fille peuvent également modifier le comportement de la classe mère en redefinissant les méthodes de la classe mère (**overriding**)
+
+Exemple d'héritage : 
+
+
+```mermaid
+classDiagram
+    Animal <|-- Canard
+    Animal <|-- Baleine
+    Animal <|-- Cheval
+    class Animal{
+          +int age
+          +String genre
+          +isMammifere()
+   }
+    class Canard{
+        String couleurBec
+        
+        +nage()
+        
+    }
+    class Baleine{
+        + int taille
+        + plonge()
+    }
+    class Cheval{
+        + int poids
+        + cours()
+    }
+    
+```
+
+### Comment hériter ? 
+
+En Java, une classe peut hériter d'une autre classe en utilisant le mot clé **extends**.
+Le mot clé **extends** se place aprés le nom de classe et est suivi du nom de classe mère.
+
+> Attention, une classe **ne peut hériter que d'une seule classe !**
+
+Dans le cas des animaux : 
+
+
+```java 
+public class Animal  {
+
+    private int age;
+    private String genre;
+
+    public boolean isMammifere(){
+        return false;
+    }
+}
+
+public class Baleine extends Animal{
+    private int taille;
+    
+    public void plonge(){
+
+    }
+}
+```
+
+Ici, nous constatons que la classe Baleine représente un mammifére. 
+La méthode **isMammifere** de la classe doit être redefinie dans la classe **Baleine**.
+
+Ainsi, la classe **Baleine** devient : 
+
+```java
+public class Baleine extends Animal{
+
+    private int taille;
+
+    public void plonge(){
+    }
+
+    @Override
+    public boolean isMammifere() {
+        return true;
+    }
+}
+```
+
+> Ici, vous voyez apparaitre l'annotation @override. Les annotations sont énormément utilisées dans le cadre de développement d'applications d'entreprise. Elles permettent d'ajouter des comportements transverses sans que vous soyez obligés de coder.
+> L'annotation @override est purement indicative et n'a aucun apport lors de l'exécution.
+
+
+## Le mot clé **abstract**
+
+Dans l'exemple ci dessus, aucun obligation n'a été imposé quant à la redéfinition de la méthode **isMammifere**. 
+La classe **Balein** aurait très bien pu ne pas redéfinir cette méthode et d'un point de vue compilation et éxecution, aucune erreur n'aurait été rencontrée.
+
+Et pourtant, conceptuellement, une **baleine** est un mammifère.
+
+Le moté clé **abstract** permet de forcer la redefinition des méthodes dites abstraites par les classes héritantes.
+Il doit être possitionné avec le mot clé **class** de la classe mère puis peut être utilisé lors de la déclaration de certaines méthodes. 
+
+Ces méthodes abstraites ne fourniront aucun bloc de code dans la classe. Seule la siganture sera définie (ce que la méthode retourne et ce qu'elle prend en paramétre).
+
+Les classes **fille** **devront** implémenter les méthodes abstraites. C'est à dire fournir un bloc d'instructions.
+
+Voici la nouvelle déclaration de la classe **Animal** : 
+
+```java 
+public abstract class Animal  {
+
+    private int age;
+    private String genre;
+
+    public abstract boolean isMammifere();
+}
+```
+
+Si nous ne faisons aucune autre modification, le projet ne compile plus.
+
+![alt heritage](./assets/heritage.png "heritage")
+
+Il est nécessaire de définir une implémentation de cette méthode dans les classes **Cheval** et **Canard**
+
+```java
+public class Cheval extends Animal{
+    private int poids;
+
+    @Override
+    public boolean isMammifere() {
+        return true;
+    }
+}
+
+public class Canard extends Animal {
+
+    private String couleurBec;
+
+    public void nage() {
+    }
+
+    @Override
+    public boolean isMammifere() {
+        return false;
+    }
+}
+```
+
+## Le mot clé final.
+
+La méthode **isMammifere** va devoir être implémtée dans l'ensemble des classes représentant des animaux. 
+Dans notre exemple, les classes **Cheval** et **Baleine** représentent des animaux tous 2 des mammiféres et potentiellement partageant des caractèristiques communes.
+
+Ainsi, une nouvelle classe **Mammifere** peut être réalisé afin de regrouper les mammiféres entre eux.
+
+```mermaid
+classDiagram
+    Animal <|-- Mammifere
+    Animal <|-- Canard
+    Mammifere <|-- Baleine
+    Mammifere <|-- Cheval
+    class Animal{
+          +isMammifere()
+   }
+    class Mammifere{
+    }
+    class Canard{
+    }
+    class Baleine{
+    }
+    class Cheval{
+    }
+    
+```
+
+Le nouveau diagramme de classe présente le nouvel arbre d'héritage.
+
+Dés lors, la méthode  **isMammifere** sera définie dans la classe **Mammifere** et ne devra plus être redéfinie par les classes héritant de la classe **Mammifere**.
+
+Pour éviter qu'une méthode ne soit redéfinie, il suffit de la faire précéder par le mot clé **final**. Le mécanisme d'**overrriding** ne pourra plus avoir lieu.
+
+La classe **Mammifere** devient : 
+
+```java
+public class Mammifere extends Animal{
+    @Override
+    public final boolean isMammifere() {
+        return false;
+    }
+}
+```
+
+Si nous changeons l'heritage sur la classe **Baleine** en laissant la méthode **isMammifere**.
+
+```java
+public class Mammifere extends Animal{
+    @Override
+    public final boolean isMammifere() {
+        return true;
+    }
+}
+```
+
+![alt heritage2](./assets/heritage2.png "heritage2")
+
+La classe **Baleine** doit devenir : 
+
+```java
+public class Baleine extends Mammifere{
+
+    private int taille;
+
+    public void plonge(){
+    }
+
+}
+
+```
