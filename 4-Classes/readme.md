@@ -291,8 +291,10 @@ classDiagram
     Animal <|-- Baleine
     Animal <|-- Cheval
     class Animal{
+          +String nom
           +int age
           +String genre
+          
           +isMammifere()
    }
     class Canard{
@@ -324,7 +326,7 @@ Dans le cas des animaux :
 
 ```java 
 public class Animal  {
-
+    private String nom;
     private int age;
     private String genre;
 
@@ -365,6 +367,68 @@ public class Baleine extends Animal{
 > Ici, vous voyez apparaitre l'annotation @override. Les annotations sont énormément utilisées dans le cadre de développement d'applications d'entreprise. Elles permettent d'ajouter des comportements transverses sans que vous soyez obligés de coder.
 > L'annotation @override est purement indicative et n'a aucun apport lors de l'exécution.
 
+## Le mot clé super
+
+Au sein des classes fille, nous pouvons redefinir les méthodes. Cette redefinition peut cependant s'appuyer/utiliser ce qui a été initialement défini dans la classe mère.
+
+Le mot clé **super** permet d'appeler les méthodes de la classe mère au sein d'une classe fille,
+
+Par exmple, ajoutons une méthode **getNom** dans la classe **Animal**.Cette méthode permettra de fournir le nom de l'animal.
+
+Dans le cas de la classe **Baleine**, nous souhaitons que la méthode **getNom** retourne le nom de la baleine en préfissant pas *Baleine*.
+
+En recodant, nous obtenons : 
+
+```java
+public abstract class Animal {
+
+    private String nom;
+    private int age;
+    private String genre;
+
+    public Animal(String nom, int age) {
+        this.nom = nom;
+        this.age = age;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+}
+
+public class Baleine extends Mammifere{
+
+    private int taille;
+
+    public Baleine(String nom, int age) {
+        super(nom, age);
+    }
+
+    @Override
+    public String getNom() {
+        return "Baleine  " + super.getNom();
+    }
+
+    public void plonge(){
+    }
+}
+```
+
+```java
+import amimal.Baleine;
+
+public class Main10 {
+    public static void main(String[] args) {
+        var baleine = new Baleine("Moby Dick", 173);
+        System.out.println(baleine.getNom());
+    }
+}
+
+```
+
+```shell
+Baleine Moby Dick
+```
 
 ## Le mot clé **abstract**
 
@@ -385,6 +449,7 @@ Voici la nouvelle déclaration de la classe **Animal** :
 ```java 
 public abstract class Animal  {
 
+    private String nom;
     private int age;
     private String genre;
 
@@ -490,5 +555,304 @@ public class Baleine extends Mammifere{
     }
 
 }
+```
+
+## La classe *java.lang.Object*
+
+Toute classe étend directement ou indérectement de la classe *java.lang.Object* même si aucun héritage n'est indiqué.
+
+Ainsi, les méthodes de la *java.lang.Object* sont disponibles.
+
+```mermaid
+classDiagram
+    class Object{
+          +Object	clone()
+          +int	hashCode()
+          +boolean equals(Object obj)
+          +String toString()
+          +void finalize()
+          +Class<?>	getClass()
+          +void	notify()
+          +void	notifyAll()
+          +void	wait()
+          +void	wait(long timeout)
+          +oid	wait(long timeout, int nanos)
+}
+```
+
+Attardons nous sur les méthodes principales.
+
+### La méthode toString
+
+Cette méthode permet de proposer une représentation de l'objet sour la forme d'une chaîne de caractères.
+
+L'implémentation de la classe **Object** est très sommaire. Elle ne fournit que le nom de de la classe compléte de la valeur retounée par la méthode **hashcode**.
+
+```java
+import amimal.Baleine;
+
+public class Main6 {
+    public static void main(String[] args) {
+        var baleine= new Baleine("Moby Dick", 173);
+        System.out.println(baleine);
+    }
+}
+```
+
+```shell
+amimal.Baleine@506e6d5e
+```
+
+> la méthode  System.out.println invoque directement la méthode **toString** lorsqu'elle recoit un objet en paramétre.
+
+En reddefinissant la méthode **toString**, il serait plus intéressant d'afficher le nom et l'age de la baleigne.
+
+Pour cela, redefinissons la méthode toString dans la classe **Animale**.
+
+```java
+package amimal;
+
+import java.util.StringJoiner;
+
+public abstract class Animal  {
+
+    private String nom;
+    private int age;
+    private String genre;
+
+    public Animal(String nom, int age) {
+        this.nom = nom;
+        this.age = age;
+    }
+
+    public abstract boolean isMammifere();
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", this.getClass().getSimpleName() + "[", "]")
+                .add("age=" + age)
+                .add("nom='" + nom + "'")
+                .toString();
+    }
+}
 
 ```
+
+En executant le programme précédent, l'affichage est désormais le suivant : 
+
+```shell
+Baleine[age=173, nom='Moby Dick']
+```
+
+### La méthode equals 
+
+Cette méthode est fréquemment utilisée pour vérfier que 2 objets sont égaux. 
+
+Par défaut, la méthode fournie pour la classe **java.lang.Object** vérifie uniquement que les 2 objets sont la même instance. 
+
+```java 
+public boolean equals(Object obj) {
+    return (this == obj);
+}
+```
+
+Si nous laissons l'implémentation, par défaut, le code suivant indique que les 2 baleines sont différents.
+Hors, elles semblent cependant être identiques.
+
+:
+```java
+public class Main7 {
+    public static void main(String[] args) {
+        var baleine1 = new Baleine("Moby Dick", 173);
+        var baleine2 = new Baleine("Moby Dick", 173);
+        System.out.printf("Les baleines sont elle les meêmes ? Reponse : %b", baleine1.equals(baleine2));
+    }
+}
+```
+
+Résulat :
+
+```shell
+Les baleines sont elle les meêmes ? Reponse : false
+```
+
+L'égalité entre 2 objets dans la réalité n'est pas uniquement basée sur le fait que ce soit la même instance. 
+Il s'agit le plus souvent d'une comparaison entre les valeurs des propriétés caractèrisant chaque instance. 
+
+Par exemple, dans la classe **Animal**, on pourrait considérer que 2 objets sont éqaux :
+- soit les objets sont la même instance
+- soit ils sont issus de la même classe et ont le même nom et le même age.
+
+Ainsi, la classe **Animal** doit redéfinir la méthode **equals**.
+
+```java
+public abstract class Animal  {
+
+    private String nom;
+    private int age;
+    private String genre;
+
+    public Animal(String nom, int age) {
+        this.nom = nom;
+        this.age = age;
+    }
+
+    public abstract boolean isMammifere();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Animal animal = (Animal) o;
+        return age == animal.age && Objects.equals(nom, animal.nom);
+    }
+    
+    //Autres méthode
+}
+```
+
+En éxecutant la méthode **main** précédente, on constate que l'éqalité deveint vraie.
+
+```shell
+Les baleines sont elle les meêmes ? Reponse : true
+```
+
+### La méthode hashCode
+
+Cetté méthode est utilisée par des algorithmes de hachage avant de vérifier que 2 objets sont égaux. 
+Par exemple, la classe **HasSet** fréquemment utilisée lors de l'utilisation de **Set** utilise cette méthode avant de comparer les objets. 
+Ainsi, des objets identiques doivent avoir en premier lieu le même résultat au niveau du Hashsode. 
+
+> un set est une ensemble d'objets ne contenant pas de doublon.
+
+Si nous conservons l'impléméntation de la méthode **equals** mais que nous ne redéfinisonns pas la méthode **hashCode**, nous constatons que le set contient **2 éléments**. 
+Or, les 2 baleines étant les mêmes, un seul élément ne devrait être présent dans la set.
+
+```java
+public class Main8 {
+    public static void main(String[] args) {
+        var baleine1 = new Baleine("Moby Dick", 173);
+        var baleine2 = new Baleine("Moby Dick", 173);
+
+        Set<Animal> set = new HashSet<>();
+        set.add(baleine1);
+        set.add(baleine2);
+
+        System.out.printf("Nombre d'éléments : %d",  set.size());
+    }
+}
+```
+
+```shell
+Nombre d'éléments : 2
+```
+
+Il est donc nécessaire de redefinir la méthode **hashCode**. L'implementation de ce type méthode repose sur la réalisation d'une empreinte numérique en fonction des propriétés utilisées dans l'égalité.
+Pour la classe **Animal**, l'implémentation serait la suivante : 
+
+```java
+public abstract class Animal  {
+
+    private String nom;
+    private int age;
+    private String genre;
+
+    public Animal(String nom, int age) {
+        this.nom = nom;
+        this.age = age;
+    }
+
+    public abstract boolean isMammifere();
+
+    // methode equals
+   
+    @Override
+    public int hashCode() {
+        return Objects.hash(nom, genre);
+    }
+
+    // methode toString
+
+}
+```
+
+Si nous relançons le main précédent, nous obtenons bien le résutat attendu :
+
+```shell
+Nombre d'éléments : 1
+```
+
+
+## L'agrégation / La composition / L'associtation
+
+Comme décrit une classe permet de définir de nouveaux type, ces nouveaux types peuvent ainsi être utilisés pour déclarer des propriétés.
+
+L'association est le faut qu'un objet soit lié à un objet d'un autre classe.
+
+L'agrégation et la composition sont le fait qu'un objet soit lié à plusieurs objets d'une autre classe. La composition implique en plus une appartenance. La destruction de l'objet contenant détruit les objets liés. 
+
+Créons la classe **Zoo** qui va contenir un ensemble d'animaux. Cet ensemble est limité au maximun à 100 animaux.
+
+Au niveau UML,
+
+```mermaid
+classDiagram
+    Zoo "1..100" *--  Animal
+    class Zoo{
+
+    }
+    class Animal{
+   }
+```
+
+Au niveau de la classe **Zoo** : 
+
+```java
+public class Zoo {
+    private Animal[] animaux;
+
+    public Zoo() {
+        this.animaux = new Animal[100];
+    }
+
+    public void addAnimal(Animal animal, int index){
+        this.animaux[index] = animal;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Zoo.class.getSimpleName() + "[", "]")
+                .add("animaux=" + Arrays.stream(animaux)
+                                    .filter(Objects::nonNull)
+                                    .map(Object::toString)
+                                    .collect(Collectors.joining(",")))
+                .toString();
+    }
+}
+```
+
+La méthode **addAnimal** permet d'ajouter des animaux au sein de la classe **Zoo**.
+
+```java
+import amimal.Baleine;
+import amimal.Canard;
+import amimal.Zoo;
+
+public class Main9 {
+    public static void main(String[] args) {
+        Zoo zoo = new Zoo();
+        zoo.addAnimal(new Baleine("Moby Dick", 173), 0);
+        zoo.addAnimal(new Canard("Donald Duck", 90, "jaune"), 1);
+        System.out.println(zoo);
+    }
+}
+```
+
+```shell
+Zoo[animaux=Baleine[age=173, nom='Moby Dick'],Canard[age=90, nom='Donald Duck']]
+```
+
+> Vous pouvez constater que la méthode **addAnimal** prend 2 paramétres dont le premier est un paramétre de type Animal.
+> Nous appelons cette méthode en passant une instance de la classe **Baleine** puis une instance de la classe **Canard**.. 
+> Aucune erreur est lévée ce qui est tout à fait normal, les classes **Baleine** et **Canard** héritent toutes 2 de la classe **Animal**. 
+> Donc, toute instance de ces classes sont, par héritage, des instances de la classe **Animal**. On parle ici de polymorphisme.  
