@@ -2,7 +2,6 @@
 
 ----
 
-@import "1-base/readme.md"
 - [1. base](1-base/readme.md)
 - [2. Tableau](2-Tableau/readme.md)
 - [3. String](3-String/readme.md)

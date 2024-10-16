@@ -2,7 +2,7 @@
 
 La programmation Orientée Objet est une des concepts principaux du langage Java.
 
-La réalisation de classe est la principale possibilité offerte par le langage pour définir de nouveaux types.
+La réalisation de classes est la principale possibilité offerte par le langage pour définir de nouveaux types.
 
 
 ## Qu'est ce qu'une classe ? 
@@ -14,7 +14,7 @@ On y trouvera :
 - des propriétés
 - des méthodes pour manipuler ces propriétés.
 
-Les propriétés seront un ensemble de variables typés qui poséderont des valeurs variant tout le long du cyle de vie de l'objet. 
+Les propriétés seront un ensemble de variables typés qui posséderont des valeurs variant tout le long du cyle de vie de l'objet. 
 **Les valeurs des propriétés représentent l'état de l'objet**
 
 Les méthodes permettent d'accéder aux propriétés, de modifier leur valeur ou de réaliser un comportenement en manipulant l'ensemble des valeurs des propriétés.
@@ -367,7 +367,7 @@ public class Baleine extends Animal{
 > Ici, vous voyez apparaitre l'annotation @override. Les annotations sont énormément utilisées dans le cadre de développement d'applications d'entreprise. Elles permettent d'ajouter des comportements transverses sans que vous soyez obligés de coder.
 > L'annotation @override est purement indicative et n'a aucun apport lors de l'exécution.
 
-## Le mot clé super
+### Le mot clé super
 
 Au sein des classes fille, nous pouvons redefinir les méthodes. Cette redefinition peut cependant s'appuyer/utiliser ce qui a été initialement défini dans la classe mère.
 
@@ -430,7 +430,7 @@ public class Main10 {
 Baleine Moby Dick
 ```
 
-## Le mot clé **abstract**
+### Le mot clé **abstract**
 
 Dans l'exemple ci dessus, aucun obligation n'a été imposé quant à la redéfinition de la méthode **isMammifere**. 
 La classe **Balein** aurait très bien pu ne pas redéfinir cette méthode et d'un point de vue compilation et éxecution, aucune erreur n'aurait été rencontrée.
@@ -487,7 +487,7 @@ public class Canard extends Animal {
 }
 ```
 
-## Le mot clé final.
+### Le mot clé final.
 
 La méthode **isMammifere** va devoir être implémtée dans l'ensemble des classes représentant des animaux. 
 Dans notre exemple, les classes **Cheval** et **Baleine** représentent des animaux tous 2 des mammiféres et potentiellement partageant des caractèristiques communes.
