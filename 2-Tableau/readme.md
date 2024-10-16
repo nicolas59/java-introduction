@@ -1,4 +1,4 @@
-__# Les tableaux
+# Les tableaux
 
 Un tableau est une structure de données permettant de stocker une liste d’une longueur finie d’éléments de même type.
 

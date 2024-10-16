@@ -1,5 +1,7 @@
 # Les chaînes de caractères
 
+-----
+
 ## Représentation
 
 En java, la représentation une chaîne de caractères s'effectue par les guillemets.

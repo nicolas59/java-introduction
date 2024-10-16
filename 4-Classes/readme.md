@@ -1,5 +1,7 @@
 # Programmation Orientée Objet
 
+-----
+
 La programmation Orientée Objet est une des concepts principaux du langage Java.
 
 La réalisation de classes est la principale possibilité offerte par le langage pour définir de nouveaux types.

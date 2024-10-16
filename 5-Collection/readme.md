@@ -1,5 +1,7 @@
 # Les collections
 
+-----
+
 ## Qu'est ce qu'une collection ? 
 
 Une collection est une structure de données permettant de regrouper un
@@ -183,8 +185,6 @@ Un set ressemble fortement à une liste. Cependant, les sets n'ont pas de doublo
 > Le test d'équalité sur chaque objet du set pouvant être couteux en mémmoire, les implémentations de l'interface Set utlisent la méthode hashCode pour calculer l'empreinte avant de comparer l'équalité. 
 >> Ainsi, dés que vous insérerez un objet dans le set, lors de l'insertion, la méthode hashCode est appelée afin d'obtenir une empreinte numérique. A partir de cette empreinte, l'impplémentation va rechercher la présence d'un objet ayant la même empreinte, si c'est le cas, il y aura un appel à la méthode equals. Si la méthode retourne vraie, l'objet inséré remplacera l'objet présent. Si non, l'objet sera ajouté à la lise.
 
-
-
 Fichier [Main3](src/main/java/Main3.java)
 
 ```java
@@ -230,3 +230,111 @@ public class Main4 {
 mvn --quiet compile exec:java -Dexec.mainClass=Main4
 [fraise, melon, orange, cerise, pomme]
 ```
+
+### L'interface Queue
+
+* PriorityQueue
+  * Permet de récupérer les éléments triés après leur insertion
+
+* ConcurrentLinkedQueue
+  * Classe thread-safe
+  * Adapté pour des accès dans un environnement multi-threadé
+
+* ArrayBlockingQueue
+  * Permet de stocker des éléments avec une taille finie
+  * Eléments stockées en mode FIFO
+
+| Méthode            | Description                                                                                             |
+|--------------------|---------------------------------------------------------------------------------------------------------|
+| boolean add(E e)   | Permet d’ajouter un élément mais lève une exception en cas de rejet de l’ajout                          |
+| boolean offer(E e) | Permet d’ajouter un élément mais ne lèvera pas d’exception en cas de rejet de l’ajout                   |
+| E remove()         | Permet de supprimer un élément de la queue. Lève une exception en cas de problème                       |
+| E poll()           | Permet de supprimer un élément de la queue. Ne lève pas d’ exception en cas de problème                 |
+| E element()        | Permet de récupérer un élement sans le retirer de la queue. Lève une exception en cas de problème       |
+| E peek()           | Permet de récupérer un élement sans le retirer de la queue. Ne lève pas d’ exception en cas de problème |
+
+## Parcourir une collection
+
+### Utilisation du for
+
+Depuis Java 5, le parcours des élements itérables a été facilité par l'utilisation du for ("for each").
+
+> Un  tableau est également considéré comme un élement itérable. La syntaxe ci-dessous est également utilisable avec les tableaux.
+
+Syntaxe : 
+
+```java 
+for(<Type> <variable> : <iterable>){
+// instructions
+}
+`````
+
+```java
+import java.util.ArrayList;
+
+public class Main5 {
+
+    public record Country(String name, String capital){};
+
+    public static void main(String[] args) {
+        var countries = new ArrayList<Country>();
+        countries.add(new Country("France", "Paris"));
+        countries.add(new Country("Allemagne", "Berlin"));
+        countries.add(new Country("Anglaterre", "Londres"));
+        countries.add(new Country("Belgique", "Bruxelles"));
+
+        for(var country:countries){
+            System.out.println(country.name.toUpperCase() + " a pour capitale "+ country.capital);
+        }
+    }
+}
+```
+
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Main5
+FRANCE a pour capitale Paris
+ALLEMAGNE a pour capitale Berlin
+ANGLATERRE a pour capitale Londres
+BELGIQUE a pour capitale Bruxelles
+```
+
+### Les streams et foreach
+
+Depuis Java 8, la programmation fonctionnelle a fait son apparition au sein du langage Java.
+
+La programmtion fonctionnelle a pour objetif d'appliquer des transformations (via l' 'utilisation des fonctions) sur des élements afin d'obtenir d'autres élements.
+
+Les streams et les lambdas ont ainsi été intégrées dans le JDK pour mettre en place ce concept.
+
+Ainsi, les collections possédent une méthode *stream* permettant d'initialiser la stream de la collection. 
+
+Sur la stream obtenue, la méthode **foreach** est disponible et sera appelée sur chaque élement constituant la collection.
+
+```java
+import java.util.ArrayList;
+
+public class Main6 {
+    public record Country(String name, String capital){};
+
+    public static void main(String[] args) {
+        var countries = new ArrayList<Main5.Country>();
+        countries.add(new Main5.Country("France", "Paris"));
+        countries.add(new Main5.Country("Allemagne", "Berlin"));
+        countries.add(new Main5.Country("Anglaterre", "Londres"));
+        countries.add(new Main5.Country("Belgique", "Bruxelles"));
+
+        countries.stream()
+                .forEach(country -> System.out.println(country.name().toUpperCase() + " a pour capitale " + country.capital()));
+    }
+}
+
+```
+
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Main6
+FRANCE a pour capitale Paris
+ALLEMAGNE a pour capitale Berlin
+ANGLATERRE a pour capitale Londres
+BELGIQUE a pour capitale Bruxelles
+```
+
