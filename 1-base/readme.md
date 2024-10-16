@@ -4,7 +4,7 @@
 
 ## Helloworld
 
-Pour démarrer l'apprentissage d'un programme rien de tel que l'écriture du fameux HelloWorld.
+Pour démarrer l'apprentissage d'un programme, rien de tel que l'écriture du fameux HelloWorld.
 
 Fichier **[Helloworld.java](src/main/java/Helloworld.java)**
 
@@ -31,12 +31,12 @@ javac Helloworld.java
 java Helloworld
 ```
 
-> En java, toute ligne d'instruction est terminée par une **virgule**
+> En java, toute ligne d'instructions est terminée par une **virgule**
 
 ### Déclaration d'une variable
 
-Pour utiliser des variables, il est nécéssaire de la déclarer et de leur assigner une valeur. 
-Lors de la déclaration, on definit le type de la variable (primitif, classe, enum) suivi du nom de la variable.
+Pour utiliser une variable, il est nécéssaire de la déclarer et de lui assigner une valeur. 
+Lors de la déclaration, on definit le type de la variable (primitif, classe, record, enum) suivi du nom de la variable.
 
 Fichier **[Variables1.java](src/main/java/Variables1.java)**
 
@@ -69,7 +69,7 @@ Le nombre magique est 62
 Le nombre magique est 62
 ````
 
-Il est tout à fait possible de déclarer puis par la suite assigner une valeur à cette variable.
+Il est tout à fait possible de déclarer puis par la suite d'assigner une valeur à cette variable.
 
 Fichier **[Variables2.java](src/main/java/Variables2.java)**
 
@@ -132,7 +132,7 @@ Une variable associée à **null** mal utilisée peut entrainer l'exception **Nu
 
 ### Les primitives 
 
-Java n'est pas un lanqage purement objet. 8 primitives sont mises à disposition au déceloppeur.
+Java n'est pas un lanqage purement objet. 8 primitives sont mises à disposition au développeur.
 
 | Catégorie | Type      | Taille         | Signé    | Min                     | Max                                  
 |-----------|-----------|----------------|----------|-------------------------|--------------------------------------
@@ -148,7 +148,7 @@ Java n'est pas un lanqage purement objet. 8 primitives sont mises à disposition
 
 ### Le mot clé *var*
 Depuis Java5, il est possible d'éviter de déclarer le type d'une variable grâce au mot clé **var**.
-Dans ce cas, il est nécessaire d'assigner une valeur afin que le compilateur infère le type de la variable.
+Dans ce cas, il est nécessaire d'assigner une valeur afin que le compilateur infère le type de la variable. Une fois le type inféré, il n'est plus possible d'assigner à la variable à une valeur d'un autre type.
 
 Fichier **Variable4.java**
 
