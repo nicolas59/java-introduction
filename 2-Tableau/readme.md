@@ -1,5 +1,7 @@
 # Les tableaux
 
+-----
+
 Un tableau est une structure de données permettant de stocker une liste d’une longueur finie d’éléments de même type.
 
 Un tableau est un objet possédant la propriété **length**. Cette propriété length permet d’obtenir la taille

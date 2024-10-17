@@ -2,7 +2,7 @@ public class Variables1 {
 
     public static void main(String[] args) {
         /**
-         * Declaration  et assignaement d'une variable
+         * Declaration  et assignement d'une variable
          */
         int magicNumber = 62;
 

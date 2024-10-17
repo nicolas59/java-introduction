@@ -801,10 +801,11 @@ Au niveau UML,
 classDiagram
     Zoo "1..100" *--  Animal
     class Zoo{
-
+        
     }
     class Animal{
-   }
+        
+    }
 ```
 
 Au niveau de la classe **Zoo** : 

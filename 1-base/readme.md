@@ -31,7 +31,7 @@ javac Helloworld.java
 java Helloworld
 ```
 
-> En java, toute ligne d'instructions est terminée par une **virgule**
+> En java, toute ligne d'instructions est terminée par une **point virgule**
 
 ### Déclaration d'une variable
 
@@ -45,7 +45,7 @@ public class Variables1 {
 
     public static void main(String[] args) {
         /**
-         * Declaration  et assignaement d'une variable
+         * Declaration  et assignement d'une variable
          */
         int magicNumber = 62;
 
@@ -134,16 +134,16 @@ Une variable associée à **null** mal utilisée peut entrainer l'exception **Nu
 
 Java n'est pas un lanqage purement objet. 8 primitives sont mises à disposition au développeur.
 
-| Catégorie | Type      | Taille         | Signé    | Min                     | Max                                  
-|-----------|-----------|----------------|----------|-------------------------|--------------------------------------
-|           | byte      | 2<sup>8</sup>  | signed   | -128                    | 127                                  
-|           | char      | 2<sup>16</sup> | unsigned | 0                       | 2<sup>16</sup>-1                     
-| Entier    | short     | 2<sup>16</sup> | signed   | -2<sup>15</sup>         | 2<sup>15</sup>-1                     
-|           | int       | 2<sup>32</sup> | signed   | 2<sup>2</sup>           | 2<sup>31</sup>-1                     
-|           | long      | 2<sup>64</sup> | signed   | -2<sup>63</sup>         | 2<sup>63</sup>-1                     
-| Decimaux  | float     | 2<sup>32</sup> | signed   | -3.4 * 10<sup>38</sup>  | 3.4 * 10<sup>38</sup> 
-|           | double    | 2<sup>64</sup> | signed   | -1.8 * 10<sup>308</sup> | 1.8 * 10<sup>308</sup> 
-| Autre     | boolean   |                |          |                         |
+| Catégorie | Type      | Taille         | Signé    | Min                | Max                                  
+|-----------|-----------|----------------|----------|--------------------|--------------------------------------
+|           | byte      | 2<sup>8</sup>  | signed   | -128               | 127                                  
+|           | char      | 2<sup>16</sup> | unsigned | 0                  | 2<sup>16</sup>-1                     
+| Entier    | short     | 2<sup>16</sup> | signed   | -2<sup>15</sup>    | 2<sup>15</sup>-1                     
+|           | int       | 2<sup>32</sup> | signed   | 2<sup>2</sup>      | 2<sup>31</sup>-1                     
+|           | long      | 2<sup>64</sup> | signed   | -2<sup>63</sup>    | 2<sup>63</sup>-1                     
+| Decimaux  | float     | 2<sup>32</sup> | signed   | -2<sup>-149</sup>  | (2-2<sup>-23</sup>) * 2<sup>127</sup> 
+|           | double    | 2<sup>64</sup> | signed   | -2<sup>-1074</sup> | (2-2<sup>-52</sup>) * 2<sup>21023</sup> 
+| Autre     | boolean   |                |          |                    |
 
 
 ### Le mot clé *var*
@@ -269,6 +269,27 @@ Angle aigu
 ```
 
 > dans le cas d'une succession de **else if**, le mot clé seul **else** sera toujours à la fin de cette succession.
+
+### switch ... case
+Dans sa forme de base, le switch case ressemble au **if**. Il permet de tester plusieurs alternatives.
+
+```java
+switch(variable) {
+    case constante1:
+    // bloc d'instructions
+    case constante2:
+    // bloc d'instructions
+    //...
+    default:
+    // bloc d'instructions
+}
+```
+
+> Attention : dés qu'un case est vraie, le bloc d'instructions est évalué. Si ce bloc ne se termine paa par le mot clé **break**, les cases situés en dessous seront évalués jusqu'au prochain **break** ou jusqu'à la fin du swicth.
+
+> on ne peut pas avoir 2 cases avec la même constante
+
+Depuis Java 12, le switch évolue afin d'intégrer le pattern matching.
 
 ### for
 
@@ -473,7 +494,7 @@ mvn --quiet compile exec:java -Dexec.mainClass=Methode2
 Somme 10 + 7 : 27
 ```
 
-Depuis Java5, il est possible de déclarer un nombre infini de paramétre. On parle alors de **vararg**
+Depuis Java5, il est possible de déclarer un nombre infini de paramétres d'un même type. On parle alors de **varargs**
 Un seul vararg est autorisé par méthode et il doit être le dernier paramétre. 
 
 Pour introduire un paramétre **vararg**, il suffit d'ajouter ***...*** apr&s le type du paramatré suivi du nom de celui ci.
@@ -508,3 +529,65 @@ Sousoutraction : -17
 
 > Les exemples ci-dessus utilisent la notion de vararg. En effet, la méthode **System.out.printf** est uné méthode avec un vararg.
 > Le premier paramétre est la chaine de caractéres, suivi de plusieurs paramétres qui seront utilisés pour remplacer les élements introduits par **%**.
+
+
+## La classe System
+
+La classe *System* fournit des méthodes pour interagier avec les entrées/sorties standards, récuperer les variables/propriétés d'environnements et quelques méthodes utilitaires.
+La classe ne peut être instanciée.
+
+### Sortie console : System.out
+
+La propriété *System.out* permet de réaliser des sorties console. La propriété est de type **PrintStream** possédant des nombreux méthodes pour écrire dans le terminal.
+
+
+| Méthode                        | Description                                                                                                |
+|--------------------------------|------------------------------------------------------------------------------------------------------------|
+| println(<pripmitive ou class>) | réalise une sortie console du paramétre en ajoutant un retour à la ligne                                   |
+| print(<pripmitive ou class>)   | réalise une sortie console du paramétre                                                                    |
+| printf(str, ...args)           | réalise une sortie en console en utlisant une chaine formattée. Les arguments seront intégrés à la chaâine |
+
+> la propriété *System.err*  ressemble à la propriété  *System.out* mais réalise la sortie d'erreurs
+
+### Entrée standard : System.in
+
+La propriété *System.in* permet de lire les éléments saisies en console. La propriété est de type **InpuStream**.
+
+La classe **InputStream** founit des méthodes de base pour lire des octets. 
+Pour faciliter la récupération des élements saisis, nous utilisons la classe *[java.util.Scanner]([https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Scanner.html)*
+
+```java
+import java.util.Scanner;
+
+public class Main1 {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Saisissez un mot : ");
+        var mot = scanner.next();
+        System.out.println("Résultat : " + mot);
+
+        System.out.print("Saisissez un nombre : ");
+        var nb = scanner.nextInt();
+        System.out.println("Résultat  : " + nb);
+
+        //pour forcer le scanner à lire jusqu'au retour charriot
+        scanner.useDelimiter(System.getProperty("line.separator"));
+        System.out.print("Saisissez une phrase : ");
+        var phrase = scanner.next();
+        System.out.println("Résultat : " + phrase);
+    }
+}
+
+```
+
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Main1
+Saisissez un mot : java
+Résultat : java
+Saisissez un nombre : 8
+Résultat  : 8
+Saisissez une phrase : Java dans le top 3 des langages !
+Résultat : Java dans le top 3 des langages !
+```
