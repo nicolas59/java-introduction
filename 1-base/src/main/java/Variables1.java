@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 public class Variables1 {
 
     public static void main(String[] args) {
@@ -16,5 +18,18 @@ public class Variables1 {
          * en formattant la chaine de chaine de caratères.
          */
         System.out.printf("Le nombre magique est %d", magicNumber);
+
+        // des variable
+        short year = 2024;
+        char a = 'a';
+
+        double montant = 3_000;
+
+        long longNumber = 5_678_232;
+        long longNumber2 = 5_678_232l;
+
+        LocalDateTime now = LocalDateTime.now();
+
+        boolean yes = true;
     }
 }

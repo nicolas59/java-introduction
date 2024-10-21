@@ -232,21 +232,21 @@ public class Main4 {
     public static void main(String[] args) {
         AirPlane b777 = new AirPlane("Boeing");
         b777.setModel("B777");
-        System.out.println("L'instance b777 est associé au modele : " + b777.getModel());
+        System.out.println("L'instance b777 est associée au modele : " + b777.getModel());
     }
 }
 ```
 
 ```java
 mvn --quiet compile exec:java -Dexec.mainClass=Main4
-L'instance b777 est associé au modele : B777
+L'instance b777 est associée au modele : B777
 ```
 
-Une erreur serait de mettre des setter sur toutes les classes. 
+Une erreur serait de mettre des setter dans toutes les classes. 
 Hors, certaines propriétés ne doivent pas être modifiées sans contrôle.
 Par exemple, la propriété **speed** ne doit être modifiée directement vu qu'elle est controlée par les méthodes **accelerate** et **decelerate**.
 
-On prefera donc ne permettre simplement la récupération de la valeur de la propriété **speed**.
+On ne permettra que la récupération de la valeur de la propriété **speed**.
 
 ```java
 public double getSpeed() {
@@ -268,7 +268,7 @@ public class Main5 {
 
 ```java
 mvn --quiet compile exec:java -Dexec.mainClass=Main5
-L'instance b777 est associé au modele : B777
+Avion Airbus A310 a une vitesse de 180,00 
 ```
 
 ## L'héritage

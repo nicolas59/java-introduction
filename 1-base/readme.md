@@ -12,7 +12,7 @@ Fichier **[Helloworld.java](src/main/java/Helloworld.java)**
 public class Helloworld {
 
     /**
-     * point d'entrée des programmes java. Il est nécessa&ire de respecter excatement la signature
+     * point d'entrée des programmes java. Il est nécessa&ire de respecter exactement la signature
      * de cette méthode afin que le programme puisse s'exécuter.
      *
      * @param args tableau d'arguments passés lors du lancement du programme
@@ -25,13 +25,15 @@ public class Helloworld {
 
 Pour compiler le programme, il est nécessaire de se positionner dans le repertoire **src**
 
-```sh
+```shell
 cd src/main/java
 javac Helloworld.java
 java Helloworld
 ```
 
-> En java, toute ligne d'instructions est terminée par une **point virgule**
+> En java, toute ligne d'instructions est terminée par un **point virgule**
+
+> Depuis Java 23, il est possible de créer une méthode *main* sans être dans une classe [JEP 477](https://openjdk.org/jeps/477)
 
 ### Déclaration d'une variable
 
@@ -59,6 +61,19 @@ public class Variables1 {
          * en formattant la chaine de chaine de caratères.
          */
         System.out.printf("Le nombre magique est %d", magicNumber);
+
+        // des variable
+        short year = 2024;
+        char a = 'a';
+
+        double montant = 3_000;
+
+        long longNumber = 5_678_232;
+        long longNumber2 = 5_678_232l;
+
+        LocalDateTime now = LocalDateTime.now();
+
+        boolean yes = true;
     }
 }
 ```
@@ -69,7 +84,7 @@ Le nombre magique est 62
 Le nombre magique est 62
 ````
 
-Il est tout à fait possible de déclarer puis par la suite d'assigner une valeur à cette variable.
+Il est tout à fait possible de déclarer puis, par la suite, d'assigner une valeur à cette variable.
 
 Fichier **[Variables2.java](src/main/java/Variables2.java)**
 
@@ -95,6 +110,8 @@ Un langage toujours au top : Java
 
 > tant qu'une variable, déclarée dans le corps d'une méthode, n'est pas assignée à une valeur, elle ne peut pas être utilisée.
 
+Fichier **[Variables3.java](src/main/java/Variables3.java)**
+
 ```java
 public class Variables3 {
 
@@ -108,29 +125,12 @@ public class Variables3 {
 }
 ```
 
-Fichier **[Variables3.java](src/main/java/Variables3.java)**
-
-
 ```sh
 javac Variables3.java
 Variables3.java:8: error: variable ageDuCapitaine might not have been initialized
         System.out.printf("L'age du capitaine est %d", ageDuCapitaine);
 ```
-
-### Et si on parlait de *null*
-
-Une variable peut : 
-- ne pas être définie. 
-- être associée à une valeur numerique, booleen, chaine de caractères, enumération, objet.
-- être associée à **null**
-
-**null** représente l'absence de valeur. il n'est ni un objet, ni un type. Il répresente une valeur spéciale.
-Une variable associée à **null** mal utilisée peut entrainer l'exception **NullPointerException**.
-
-**null** ne peut pas être assigné à une primitive
-
-
-### Les primitives 
+### Les primitives
 
 Java n'est pas un lanqage purement objet. 8 primitives sont mises à disposition au développeur.
 
@@ -145,10 +145,92 @@ Java n'est pas un lanqage purement objet. 8 primitives sont mises à disposition
 |           | double    | 2<sup>64</sup> | signed   | -2<sup>-1074</sup> | (2-2<sup>-52</sup>) * 2<sup>21023</sup> 
 | Autre     | boolean   |                |          |                    |
 
+Les opérateurs d'assignement permettent de modifier la valeur d'une primitive.
+
+| Operateur | Nom                                    | Exemple                       |
+|-----------|----------------------------------------|-------------------------------|
+| =         | Assigne une valeur                     | int i = 18;                   |    
+| +=        | Ajoute la valeur de droite             | i = 1;i += 56 // i vaut 57    |
+| -=        |  Soustrait la valeur de droite         |i = 10;i -= 2 // i vaut 8
+| /=        | Division par la valeur de droite       | i = 10;i /= 2 // i vaut 5     |
+| *=        | Multiplication par la valeur de droite | i = 10;i *= 2 // i vaut 20    |
+| %=        | Application du modulo                  | i = 10;i %= 2 // i vaut 0     |
+
+Les opérateurs mathématiques sont utilisés sur les primivites pour réaliser des opérations.
+
+| Operateur | Nom                                         | Exemple |
+|-----------|---------------------------------------------|---------|
+| +         | Addition                                    | 1 + 5   |
+| -         | Soustraction                                | 1 – 3   |
+| *         | Multiplication                              | 45 * 90 |
+| /         | Division                                    | 1 / 10  |
+| %         | Modulo (Reste de la division Euclidienne)   | 65 % 3  |
+| ++        | Incrémente de 1                             | i++     |
+| --        | Décrémente de 1                             | i--     |
+
+
+Il est possible de convertir un paramétre d'un certain type (de primitif) en un autre. 
+> Attention, il peut y avoir des pertes de precision lorsqu'on utilise un type dont l'intervalle de definition est plus petit.
+
+```java
+public class Variable5 {
+
+    public static void main(String[] args) {
+        //Explicit
+        int value = 56;
+        short castValue = (short) value;
+        System.out.println(castValue);
+
+        //Implicit
+        short valueS = 56;
+        int valueI = valueS;
+        System.out.println(valueI);
+
+        //Perte de precision
+        int number = (int) 34.78; // numb
+        System.out.println(number);
+    }
+}
+```
+
+```java
+mvn --quiet compile exec:java -Dexec.mainClass=Variable5
+56 
+56
+34
+```
+
+### Combinaison de type
+
+| Calcul      | Resultat    | Régle                           |
+|-------------|-------------|---------------------------------|
+| 2/3         | 0           | ( int, int) -> (int)            |  
+| 2/3.0       | 0,666666666 | ( int, double) -> (double)      | 
+| 2.0/3.0     | 0,666666666 | ( double, double) -> (double)   |
+| 2.0 + "3.0" | 2.03.0      | ( double, string) -> (string)   |
+
+Régle : 
+
+<center><b>String > double > int > char > boolean </b></center>
+
+
+### Et si on parlait de *null*
+
+Une variable peut : 
+- ne pas être définie. 
+- être associée à une valeur numerique, booleen, chaine de caractères, enumération, objet.
+- être associée à **null**
+
+**null** représente l'absence de valeur. il n'est ni un objet, ni un type. Il répresente une valeur spéciale.
+Une variable associée à **null** mal utilisée peut entrainer l'exception **NullPointerException**.
+
+**null** ne peut pas être assigné à une primitive
 
 ### Le mot clé *var*
 Depuis Java5, il est possible d'éviter de déclarer le type d'une variable grâce au mot clé **var**.
-Dans ce cas, il est nécessaire d'assigner une valeur afin que le compilateur infère le type de la variable. Une fois le type inféré, il n'est plus possible d'assigner à la variable à une valeur d'un autre type.
+
+Dans ce cas, il est nécessaire d'assigner une valeur afin que le compilateur infère le type de la variable.
+Une fois le type inféré, il n'est plus possible d'assigner à la variable à une valeur d'un autre type.
 
 Fichier **Variable4.java**
 
@@ -176,11 +258,20 @@ Java est apparu en 1995 et un des auteurs est James Gosling
 
 ## Loop et conditions
 
+### Avant : les opérateurs logiques ###
+
+| Operateur            | Nom  | Exemple                    |
+|----------------------|------|----------------------------|
+| &&                   | Et   | x == y && x < z            |
+| &#124;&#124;         | Ou   | x == y &#124;&#124; x < z  |
+| !                    | Not  | !(x == y && x < z  )       |   
+
+
 ### if / else if / else
 
 Le mot clé **if** permet d'éxécuter un bloc d'instructions si la condition est vraie.
 
-Pour comparer des primitives, on peut utiliser une des comparateurs suivants : 
+Pour comparer des primitives, on peut utiliser un des comparateurs suivants : 
 
 | Comparateur | Description         |
 |-------------|---------------------|
@@ -239,7 +330,7 @@ mvn --quiet compile exec:java -Dexec.mainClass=Condition2
 Le nombre (19) est un nombre impair 
 ```
 
-En utilisant **else if**, il est possible d'enchainer des tests conditionnels et associant un bloc d'instructions à chaque test. 
+En utilisant **else if**, il est possible d'enchaîner des tests conditionnels en associant un bloc d'instructions à chaque test. 
 Dés qu'un test est vrai, le bloc d'instructions est executé. Les conditions suivantes seront ignorées.
 
 Fichier **[Condition3.java](src/main/java/Condition3.java)**
@@ -285,7 +376,7 @@ switch(variable) {
 }
 ```
 
-> Attention : dés qu'un case est vraie, le bloc d'instructions est évalué. Si ce bloc ne se termine paa par le mot clé **break**, les cases situés en dessous seront évalués jusqu'au prochain **break** ou jusqu'à la fin du swicth.
+> Attention : dés qu'un case est vraie, le bloc d'instructions est évalué. Si ce bloc ne se termine paa par le mot clé **break**, les *cases* situés en dessous seront évalués jusqu'au prochain **break** ou jusqu'à la fin du *swicth*.
 
 > on ne peut pas avoir 2 cases avec la même constante
 
