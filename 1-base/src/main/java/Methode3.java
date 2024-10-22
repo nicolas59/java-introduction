@@ -9,7 +9,7 @@ public class Methode3 {
     }
 
     public static void main(String[] args) {
-        System.out.printf("Sousoutraction : %d\n", substract(1,3,4,5));
-        System.out.printf("Sousoutraction : %d", substract(9, 8));
+        System.out.printf("Soustraction : %d\n", substract(1,3,4,5));
+        System.out.printf("Soustraction : %d", substract(9, 8));
     }
 }

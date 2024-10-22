@@ -279,8 +279,8 @@ Pour comparer des primitives, on peut utiliser un des comparateurs suivants :
 | !=          | Différent           |
 | <           | Plus petit          |
 | <=          | Plus petit          |
-| >           | Plus grand          |
-| >=          | Plus grand  ou égal |
+| &gt;        | Plus grand          |
+| &gt;=       | Plus grand  ou égal |
 
 > Pour definir un bloc, on utilise les accolades { }
 
@@ -605,8 +605,8 @@ public class Methode3 {
     }
 
     public static void main(String[] args) {
-        System.out.printf("Sousoutraction : %d\n", substract(1,3,4,5));
-        System.out.printf("Sousoutraction : %d", substract(9, 8));
+        System.out.printf("Soustraction : %d\n", substract(1,3,4,5));
+        System.out.printf("Soustraction : %d", substract(9, 8));
     }
 }
 
@@ -614,8 +614,8 @@ public class Methode3 {
 
 ```shell
 mvn --quiet compile exec:java -Dexec.mainClass=Methode3
-Sousoutraction : -13
-Sousoutraction : -17
+Soustraction : -13
+Soustraction : -17
 ```
 
 > Les exemples ci-dessus utilisent la notion de vararg. En effet, la méthode **System.out.printf** est uné méthode avec un vararg.
@@ -642,7 +642,7 @@ La propriété *System.out* permet de réaliser des sorties console. La proprié
 
 ### Entrée standard : System.in
 
-La propriété *System.in* permet de lire les éléments saisies en console. La propriété est de type **InpuStream**.
+La propriété *System.in* permet de lire les éléments saisies en console. La propriété est de type **InputStream**.
 
 La classe **InputStream** founit des méthodes de base pour lire des octets. 
 Pour faciliter la récupération des élements saisis, nous utilisons la classe *[java.util.Scanner]([https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Scanner.html)*

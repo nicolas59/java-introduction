@@ -9,7 +9,7 @@ import java.util.List;
 public class ConcatReadme {
 
     public static void main(String[] args) throws Exception {
-        var chapters = List.of("1-base", "2-Tableau", "3-String", "4-Classes", "5-Collection", "7-Streams");
+        var chapters = List.of("1-base", "2-Tableau", "3-String", "4-Classes", "5-Collection", "7-Streams", "8-Enum");
         var javaFormation = Path.of("./", "java-formation.md");
         if( Files.exists(javaFormation)){
             Files.delete(javaFormation);

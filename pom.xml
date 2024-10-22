@@ -17,6 +17,7 @@
         <module>6-Maps</module>
         <module>7-Streams</module>
         <module>99-tools</module>
+        <module>8-Enum</module>
     </modules>
 
     <properties>
