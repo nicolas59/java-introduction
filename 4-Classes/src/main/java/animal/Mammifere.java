@@ -1,4 +1,4 @@
-package amimal;
+package animal;
 
 public class Mammifere extends Animal{
 

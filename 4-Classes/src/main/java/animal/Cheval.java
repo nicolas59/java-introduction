@@ -1,4 +1,4 @@
-package amimal;
+package animal;
 
 public class Cheval extends Animal{
     private int poids;

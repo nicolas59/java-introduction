@@ -1,4 +1,4 @@
-package amimal;
+package animal;
 
 import java.util.Objects;
 import java.util.StringJoiner;
@@ -30,7 +30,7 @@ public abstract class Animal  {
 
     @Override
     public int hashCode() {
-        return Objects.hash(nom, genre);
+        return Objects.hash(nom, age);
     }
 
     @Override

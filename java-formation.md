@@ -1622,7 +1622,7 @@ public class Baleine extends Mammifere{
 ```
 
 ```java
-import amimal.Baleine;
+import animal.Baleine;
 
 public class Main10 {
     public static void main(String[] args) {
@@ -1733,21 +1733,13 @@ La classe **Mammifere** devient :
 public class Mammifere extends Animal{
     @Override
     public final boolean isMammifere() {
-        return false;
+        return true;
     }
 }
 ```
 
 Si nous changeons l'heritage sur la classe **Baleine** en laissant la méthode **isMammifere**.
 
-```java
-public class Mammifere extends Animal{
-    @Override
-    public final boolean isMammifere() {
-        return true;
-    }
-}
-```
 
 ![alt heritage2](./4-Classes/assets/heritage2.png "heritage2")
 
@@ -1796,32 +1788,32 @@ Cette méthode permet de proposer une représentation de l'objet sour la forme d
 L'implémentation de la classe **Object** est très sommaire. Elle ne fournit que le nom de de la classe compléte de la valeur retounée par la méthode **hashcode**.
 
 ```java
-import amimal.Baleine;
+import animal.Baleine;
 
 public class Main6 {
     public static void main(String[] args) {
-        var baleine= new Baleine("Moby Dick", 173);
+        var baleine = new Baleine("Moby Dick", 173);
         System.out.println(baleine);
     }
 }
 ```
 
 ```shell
-amimal.Baleine@506e6d5e
+animal.Baleine@506e6d5e
 ```
 
 > la méthode  System.out.println invoque directement la méthode **toString** lorsqu'elle recoit un objet en paramétre.
 
-En reddefinissant la méthode **toString**, il serait plus intéressant d'afficher le nom et l'age de la baleigne.
+En redéfinissant la méthode **toString**, il serait plus intéressant d'afficher le nom et l'age de la baleigne.
 
-Pour cela, redefinissons la méthode toString dans la classe **Animale**.
+Pour cela, redefinissons la méthode **toString** dans la classe **Animal**.
 
 ```java
-package amimal;
+package animal;
 
 import java.util.StringJoiner;
 
-public abstract class Animal  {
+public abstract class Animal {
 
     private String nom;
     private int age;
@@ -1848,6 +1840,7 @@ public abstract class Animal  {
 En executant le programme précédent, l'affichage est désormais le suivant : 
 
 ```shell
+mvn --quiet compile exec:java -Dexec.mainClass=Main6
 Baleine[age=173, nom='Moby Dick']
 ```
 
@@ -1880,7 +1873,7 @@ public class Main7 {
 Résulat :
 
 ```shell
-Les baleines sont elle les meêmes ? Reponse : false
+Les baleines sont elle les mêmes ? Reponse : false
 ```
 
 L'égalité entre 2 objets dans la réalité n'est pas uniquement basée sur le fait que ce soit la même instance. 
@@ -1921,13 +1914,14 @@ public abstract class Animal  {
 En éxecutant la méthode **main** précédente, on constate que l'éqalité deveint vraie.
 
 ```shell
-Les baleines sont elle les meêmes ? Reponse : true
+Les baleines sont elle les mêmes ? Reponse : true
 ```
 
 ### La méthode hashCode
 
-Cetté méthode est utilisée par des algorithmes de hachage avant de vérifier que 2 objets sont égaux. 
-Par exemple, la classe **HasSet** fréquemment utilisée lors de l'utilisation de **Set** utilise cette méthode avant de comparer les objets. 
+Cette méthode est utilisée par des algorithmes de hachage avant de vérifier que 2 objets sont égaux. 
+
+Par exemple, la classe **HashSet** fréquemment utilisée lors de l'utilisation de **Set** utilise cette méthode avant de comparer les objets. 
 Ainsi, des objets identiques doivent avoir en premier lieu le même résultat au niveau du Hashsode. 
 
 > un set est une ensemble d'objets ne contenant pas de doublon.
@@ -1975,7 +1969,7 @@ public abstract class Animal  {
    
     @Override
     public int hashCode() {
-        return Objects.hash(nom, genre);
+        return Objects.hash(nom, age);
     }
 
     // methode toString
@@ -2042,9 +2036,9 @@ public class Zoo {
 La méthode **addAnimal** permet d'ajouter des animaux au sein de la classe **Zoo**.
 
 ```java
-import amimal.Baleine;
-import amimal.Canard;
-import amimal.Zoo;
+import animal.Baleine;
+import animal.Canard;
+import animal.Zoo;
 
 public class Main9 {
     public static void main(String[] args) {

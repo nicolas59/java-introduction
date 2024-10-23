@@ -1,6 +1,6 @@
-import amimal.Baleine;
-import amimal.Canard;
-import amimal.Zoo;
+import animal.Baleine;
+import animal.Canard;
+import animal.Zoo;
 
 public class Main9 {
     public static void main(String[] args) {

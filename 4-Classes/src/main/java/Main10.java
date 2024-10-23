@@ -1,4 +1,4 @@
-import amimal.Baleine;
+import animal.Baleine;
 
 public class Main10 {
     public static void main(String[] args) {

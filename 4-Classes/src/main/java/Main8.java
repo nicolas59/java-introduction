@@ -1,5 +1,5 @@
-import amimal.Animal;
-import amimal.Baleine;
+import animal.Animal;
+import animal.Baleine;
 
 import java.util.HashSet;
 import java.util.Set;
