@@ -16,7 +16,7 @@ Une collection peut etre comparée à un tableau avec des avantages indéniables
 
 Les classes permettant de créer des collections sont essentiellement dans le package *java.util*.
 
-Le JDK fournit diverses implémentations repondant à des besoins différents et adaptés à des contextes d'utilisation.
+Le JDK fournit diverses implémentations répondant à des besoins différents et adaptés à des contextes d'utilisation.
 
 ```mermaid
 ---
@@ -138,7 +138,7 @@ orange
 Taille : 4
 ```
 
-> L'interface List posséde des méthodes statiques *List.of* permettant facilement d'initialiser des listes d'élements.
+> L'interface **List** posséde des méthodes statiques *List.of* permettant facilement d'initialiser des listes d'élements.
 > Attention, la liste créée est immutable. C'est à dire que vous ne pouvez ni ajouter, ni supprimer des élements.
 
 L'exemple suivant exploite la méthode *List.of* afin d'initialiser une liste de fruits directement remplie.
@@ -212,7 +212,7 @@ false
 Taille : 5
 ```
 
-> L'interface Set posséde également des méthodes statiques *Set.of* permettant facilement d'initialiser un set d'élements.
+> L'interface **Set** posséde également des méthodes statiques *Set.of* permettant facilement d'initialiser un set d'élements.
 
 ```java
 import java.util.List;

@@ -1052,8 +1052,8 @@ p a r c o u r o n s   l e s   c a r a c t è r e s
 
 Une chaine de caractères, une fois initialisée, ne peut plus être modifiée. 
 
-Ainsi, les proprités internes de l'objet (de la chaine de caractères) ne sont pas altérables. 
-les méthodes de ces types d'objet retourne le plus souvent une nouvelle objet de la même classe.
+Ainsi, les propriétés internes de l'objet (de la chaine de caractères) ne sont pas altérables. 
+les méthodes de ces types d'objet retournent le plus souvent une nouvelle objet de la même classe.
 
 On parle alors d'**immutabilité**. C'est le cas de la classe **String**
 
@@ -1207,7 +1207,7 @@ On constate que la concanténation avec StringBuilder  est 2200 fois plus rapide
 
 -----
 
-La programmation Orientée Objet est une des concepts principaux du langage Java.
+La programmation Orientée Objet est un des concepts principaux du langage Java.
 
 La réalisation de classes est la principale possibilité offerte par le langage pour définir de nouveaux types.
 
@@ -1221,7 +1221,7 @@ On y trouvera :
 - des propriétés
 - des méthodes pour manipuler ces propriétés.
 
-Les propriétés seront un ensemble de variables typés qui posséderont des valeurs variant tout le long du cyle de vie de l'objet. 
+Les propriétés seront un ensemble de variables typées qui posséderont des valeurs variant tout le long du cyle de vie de l'objet. 
 **Les valeurs des propriétés représentent l'état de l'objet**
 
 Les méthodes permettent d'accéder aux propriétés, de modifier leur valeur ou de réaliser un comportenement en manipulant l'ensemble des valeurs des propriétés.
@@ -1289,7 +1289,7 @@ Concernant les variables d'instances, chaque instance possédera « ses » propr
 
 > Pour créer une instance, il faut utiliser le mot clé **new** 
 
-### Les contructeurs
+### Les constructeurs
 
 Un constructeur est un bloc d'instructions permettant d'initialiser une nouvelle instance d'une classe.
 
@@ -1300,7 +1300,7 @@ Un constructeur :
 - sert à configurer l'état intial de l'instance
 
 Une classe peut ne pas avoir de constructeur. Dans ce cas, Java configure automatiquement un constructeur par défaut ne réalisant aucun traitement. 
-Les propriétés de l'insstance seront initalisées par les valeurs par défaut.
+Les propriétés de l'instance seront initalisées par les valeurs par défaut.
 
 Dés qu'un constructeur est défini, le constructeur par défaut n'est plus accéssible.
 
@@ -1758,7 +1758,7 @@ public class Baleine extends Mammifere{
 
 ## La classe *java.lang.Object*
 
-Toute classe étend directement ou indérectement de la classe *java.lang.Object* même si aucun héritage n'est indiqué.
+Toute classe étend directement ou indirectement de la classe *java.lang.Object* même si aucun héritage n'est indiqué.
 
 Ainsi, les méthodes de la *java.lang.Object* sont disponibles.
 
@@ -1984,7 +1984,7 @@ Nombre d'éléments : 1
 ```
 
 
-## L'agrégation / La composition / L'associtation
+## L'agrégation / La composition / L'association
 
 Comme décrit une classe permet de définir de nouveaux type, ces nouveaux types peuvent ainsi être utilisés pour déclarer des propriétés.
 
@@ -2061,6 +2061,109 @@ Zoo[animaux=Baleine[age=173, nom='Moby Dick'],Canard[age=90, nom='Donald Duck']]
 
 <div style="page-break-before: always"> </div>
 
+# Les interfaces
+
+## Introduction
+
+Une interface est un prototype de classe définissant des méthodes devant être
+implémentées par les classes réalisant ce prototype.
+
+En java, une interface est introduit par le mot clé **interface**.
+
+Une interface peut contenir :
+* Des signatures de méthodes
+* Des variables avec « public static final »
+
+Une classe peut implémenter plusieurs interfaces via le mot clé ** implements**
+
+Une interface peut étendre plusieurs interfaces via le mot clés **extends**
+
+## Declaration
+
+Fichier [AutoRoute](src/main/java/AutoRoute.java)
+
+```java
+public interface AutoRoute {
+
+    /**
+     * retourne la categorie afin de calculer le prix du péage
+     *
+     * @return
+     */
+    int getCategorie();
+}
+```
+
+Fichier [PoidsLourd](src/main/java/PoidsLourd.java)
+```java
+public class PoidsLourd extends Vehicule
+        implements AutoRoute {
+
+    public PoidsLourd(String modele, int nbEssieux) {
+        super(modele, nbEssieux);
+    }
+
+    @Override
+    public int getCategorie() {
+        return 2;
+    }
+}
+```
+
+Fichier [Voiture](src/main/java/Voiture.java)
+```java
+public class Voiture extends Vehicule
+        implements AutoRoute {
+
+    public Voiture( String modele, int nbEssieux) {
+        super(modele, nbEssieux);
+    }
+    @Override
+    public int getCategorie() {
+        return 1;
+    }
+}
+```
+
+Ainsi, les classes **Voiture** et **PoidsLourd** implémentent l'interface **AutoRoute**. 
+On a l'obligation de définir la méthode **getCategorie()**.
+
+## Les méthodes par défaut
+
+Depuis Java 8, on peut avoir de méthodes **avec une implémentation** exploitant les méthodes de l’interface.
+La méthode doit être préfixée par le mot clé **default**.
+
+Si nous reprenons l'interface **AutoRoute**, nous pouvons ajouter la méthode **calulerPrixPeage** qui sera une méthode par défaut utilisant la catégorie du vehicule afin de caluler un prix.
+
+```java
+public interface AutoRoute {
+
+    /**
+     * retourne la categorie afin de calculer le prix du péage
+     *
+     * @return
+     */
+    int getCategorie();
+
+    /**
+     * calcule le prix du péage.
+     *
+     * @return prix du péage
+     */
+    default double calulerPrixPeage(){
+        return getCategorie() * 15;
+    }
+}
+
+```
+
+Les classes **PoidsLourd** et **Voiture** ne sont pas obligées de fournir une implémentation à la méthode **calulerPrixPeage**
+
+> Ainsi, il est désormais possible d'ajouter de nouvelles méthodes sur des interfaces sans que cela n'impacte la compilation des applications. 
+> Ce nouveau concept a ainsi permis d'intégrer la philosophie des streams au niveau des collections tout en conservant la rétro compatibilité des classes existantes.liées aux collections.
+
+<div style="page-break-before: always"> </div>
+
 # Les collections
 
 -----
@@ -2079,7 +2182,7 @@ Une collection peut etre comparée à un tableau avec des avantages indéniables
 
 Les classes permettant de créer des collections sont essentiellement dans le package *java.util*.
 
-Le JDK fournit diverses implémentations repondant à des besoins différents et adaptés à des contextes d'utilisation.
+Le JDK fournit diverses implémentations répondant à des besoins différents et adaptés à des contextes d'utilisation.
 
 ```mermaid
 ---
@@ -2201,7 +2304,7 @@ orange
 Taille : 4
 ```
 
-> L'interface List posséde des méthodes statiques *List.of* permettant facilement d'initialiser des listes d'élements.
+> L'interface **List** posséde des méthodes statiques *List.of* permettant facilement d'initialiser des listes d'élements.
 > Attention, la liste créée est immutable. C'est à dire que vous ne pouvez ni ajouter, ni supprimer des élements.
 
 L'exemple suivant exploite la méthode *List.of* afin d'initialiser une liste de fruits directement remplie.
@@ -2275,7 +2378,7 @@ false
 Taille : 5
 ```
 
-> L'interface Set posséde également des méthodes statiques *Set.of* permettant facilement d'initialiser un set d'élements.
+> L'interface **Set** posséde également des méthodes statiques *Set.of* permettant facilement d'initialiser un set d'élements.
 
 ```java
 import java.util.List;
@@ -2868,6 +2971,143 @@ public class Exemple3 {
 mvn --quiet compile exec:java -Dexec.mainClass=Exemple3
 C'est l'été
 ```
+
+
+<div style="page-break-before: always"> </div>
+
+# Les Exceptions
+
+## Introduction
+
+Evénement intervenant lors de l’exécution d’un programme qui interrompt le flow
+d’instructions normales d’un programme.
+
+
+Les exceptions entraine une interruption dans le programme
+
+En java, une **Exception** est une classe étendant la classe **Throwable**
+
+## Classe Throwable
+
+La classe **Throwable** est la classe de base de toutes les exceptions.
+
+
+```mermaid
+---
+title: Les exceptions
+---
+classDiagram
+  Throwable <|-- Exception
+  Throwable <|-- Error
+  Exception <|-- RuntimeException
+  Exception <|-- OtherException
+  class Throwable{
+    
+  }
+  class Exception{
+    
+  }
+  class Error{
+    
+  }
+  class RuntimeException{
+    
+  }
+  class OtherException{
+    
+  }
+```
+
+Les méthodes suivants sont disponibles :
+
+| Méthode                | Description                                             |
+|------------------------|---------------------------------------------------------|
+| String getMessage()    | Retourne le message de l’exception                      |
+| void printStackTrace() | Affiche l’exception avec l’état de la pile (« stack »). |
+| Throwable getCause()   | Retourne l’origine de l’erreur                          |
+
+## Classe Error
+
+La classe **Error** est la classe représentant une erreur grave en provenance de la JVM ou d’un de ses composants
+
+Cette erreur entraine un arrêt du programme
+
+
+> Vous ne devez pas étendre de la classe Error
+
+> Vous ne devez pas intercepter ces exceptions. Lorsqu'une exception de ce type est levée, votre application aura de forte chance d'être totalement instable.
+
+## Classe RuntimeException
+
+Le classe **RuntimeException** est la classe dont les exceptions ne sont pas obligatoirement interceptées par « try catch »
+
+Ces exceptions peuvent être levées sans que la méthode l’indique via le
+mot clé « throws ». 
+
+On parle d’exception implicite
+
+Exemple :
+- NullPointerException
+- ArrayIndexOutOfBoundsException
+
+
+## Classe **Exception**
+La classe **Exception** est la classe représentant les erreurs classiques remontées le plus souvent par les méthodes
+
+Ces exceptions doivent être interceptées par le bloc « try catch »
+
+## Créer son exception
+
+Pour créer de nouvelles exceptions, il suffit d’étendre la classe **Exception**.
+```java
+package fr.epsi.exception;
+
+public class UserNotFoundException extends Exception{
+    public UserNotFoundException() {
+        super("Utilisateur non trouvé");
+    }
+
+    public UserNotFoundException(Long identifer) {
+        super("Utilisateur %d non trouvé".formatted(identifer));
+    }
+}
+```
+
+Par convention, les exceptions sont suffixées par le mot « Exception »
+
+
+## Utilisation d'un exception : Le mot clé throws 
+
+Pour indiquer qu’une méthode peut « lever » une exception, il faut utiliser le mot clé **throws** suivi de l'ensemble des exceptions pouvant être lévées.
+Les exceptions sont séparées par une virgule. Ce mot clé est à possitionner à la suite des paramaétres de la méthode.
+
+Pour lever l’exception, le mot clé « throw » doit être utilisé suivi d’une instance de la classe d’exception.
+
+La levée de l’exception entraine une interruption de la méthode.
+
+Dans le cas de l'exemple suivant, on constate que dans le cas où l'utilisateur n'est pas trouvé, l'exception **UserNotFoundException** sera levée par la méthode.
+
+```java 
+public class UserService {
+
+    private Map<Long, User> users = Map.of(
+            1l, new User(1l, "Donald", "Duck"),
+            2l, new User(2l, "Mickey", "Mouse"),
+            3l, new User(3l, "Peter", "Pan"),
+            4l, new User(4l, "Mini", "Mouse")
+    );
+
+    public User findUserById(Long identifier) throws UserNotFoundException{
+        User user = this.users.get(identifier);
+        if(user == null) {
+            throw new UserNotFoundException(identifier);
+        }
+        return user;
+    }
+
+}
+```
+
 
 
 <div style="page-break-before: always"> </div>

@@ -2,7 +2,7 @@
 
 -----
 
-La programmation Orientée Objet est une des concepts principaux du langage Java.
+La programmation Orientée Objet est un des concepts principaux du langage Java.
 
 La réalisation de classes est la principale possibilité offerte par le langage pour définir de nouveaux types.
 
@@ -16,7 +16,7 @@ On y trouvera :
 - des propriétés
 - des méthodes pour manipuler ces propriétés.
 
-Les propriétés seront un ensemble de variables typés qui posséderont des valeurs variant tout le long du cyle de vie de l'objet. 
+Les propriétés seront un ensemble de variables typées qui posséderont des valeurs variant tout le long du cyle de vie de l'objet. 
 **Les valeurs des propriétés représentent l'état de l'objet**
 
 Les méthodes permettent d'accéder aux propriétés, de modifier leur valeur ou de réaliser un comportenement en manipulant l'ensemble des valeurs des propriétés.
@@ -84,7 +84,7 @@ Concernant les variables d'instances, chaque instance possédera « ses » propr
 
 > Pour créer une instance, il faut utiliser le mot clé **new** 
 
-### Les contructeurs
+### Les constructeurs
 
 Un constructeur est un bloc d'instructions permettant d'initialiser une nouvelle instance d'une classe.
 
@@ -95,7 +95,7 @@ Un constructeur :
 - sert à configurer l'état intial de l'instance
 
 Une classe peut ne pas avoir de constructeur. Dans ce cas, Java configure automatiquement un constructeur par défaut ne réalisant aucun traitement. 
-Les propriétés de l'insstance seront initalisées par les valeurs par défaut.
+Les propriétés de l'instance seront initalisées par les valeurs par défaut.
 
 Dés qu'un constructeur est défini, le constructeur par défaut n'est plus accéssible.
 
@@ -553,7 +553,7 @@ public class Baleine extends Mammifere{
 
 ## La classe *java.lang.Object*
 
-Toute classe étend directement ou indérectement de la classe *java.lang.Object* même si aucun héritage n'est indiqué.
+Toute classe étend directement ou indirectement de la classe *java.lang.Object* même si aucun héritage n'est indiqué.
 
 Ainsi, les méthodes de la *java.lang.Object* sont disponibles.
 
@@ -779,7 +779,7 @@ Nombre d'éléments : 1
 ```
 
 
-## L'agrégation / La composition / L'associtation
+## L'agrégation / La composition / L'association
 
 Comme décrit une classe permet de définir de nouveaux type, ces nouveaux types peuvent ainsi être utilisés pour déclarer des propriétés.
 

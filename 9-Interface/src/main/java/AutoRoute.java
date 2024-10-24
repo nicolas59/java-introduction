@@ -6,4 +6,13 @@ public interface AutoRoute {
      * @return
      */
     int getCategorie();
+
+    /**
+     * calcule le prix du péage.
+     *
+     * @return prix du péage
+     */
+    default double calulerPrixPeage(){
+        return getCategorie() * 15;
+    }
 }

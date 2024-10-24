@@ -138,8 +138,8 @@ p a r c o u r o n s   l e s   c a r a c t è r e s
 
 Une chaine de caractères, une fois initialisée, ne peut plus être modifiée. 
 
-Ainsi, les proprités internes de l'objet (de la chaine de caractères) ne sont pas altérables. 
-les méthodes de ces types d'objet retourne le plus souvent une nouvelle objet de la même classe.
+Ainsi, les propriétés internes de l'objet (de la chaine de caractères) ne sont pas altérables. 
+les méthodes de ces types d'objet retournent le plus souvent une nouvelle objet de la même classe.
 
 On parle alors d'**immutabilité**. C'est le cas de la classe **String**
 

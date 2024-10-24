@@ -19,6 +19,7 @@
         <module>99-tools</module>
         <module>8-Enum</module>
         <module>9-Interface</module>
+        <module>10-Exception</module>
     </modules>
 
     <properties>

@@ -2,18 +2,15 @@
 
 ----
 
-
 Les maps permettent de représenter des tableaux associatifs. Les élements du tableau sont associés à une clé.
 
 Caractèristiques de la clé :  
-* elle est Associé à une clé une valeur
+* elle est associée à une clé une valeur
 * il n'y a pas de duplication de clés. Chaque clé est unique et associée à une unique valeur.
-
 
 Quant à la valeur,  elle peut être associée à plusieurs clés.
 
 La clé et la valeur sont des objets.
-
 
 ## Les implémentations principales du JDK
 
