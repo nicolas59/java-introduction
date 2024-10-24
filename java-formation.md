@@ -2068,13 +2068,14 @@ Zoo[animaux=Baleine[age=173, nom='Moby Dick'],Canard[age=90, nom='Donald Duck']]
 Une interface est un prototype de classe définissant des méthodes devant être
 implémentées par les classes réalisant ce prototype.
 
-En java, une interface est introduit par le mot clé **interface**.
+En java, une interface est introduite par le mot clé **interface**.
 
 Une interface peut contenir :
 * Des signatures de méthodes
-* Des variables avec « public static final »
+* Des variables avec *public static final*
+* Des méthodes statiques
 
-Une classe peut implémenter plusieurs interfaces via le mot clé ** implements**
+Une classe peut implémenter plusieurs interfaces via le mot clé **implements**.
 
 Une interface peut étendre plusieurs interfaces via le mot clés **extends**
 
@@ -2130,10 +2131,11 @@ On a l'obligation de définir la méthode **getCategorie()**.
 
 ## Les méthodes par défaut
 
-Depuis Java 8, on peut avoir de méthodes **avec une implémentation** exploitant les méthodes de l’interface.
+Depuis Java 8, on peut avoir des méthodes **avec une implémentation** exploitant les méthodes de l’interface.
+
 La méthode doit être préfixée par le mot clé **default**.
 
-Si nous reprenons l'interface **AutoRoute**, nous pouvons ajouter la méthode **calulerPrixPeage** qui sera une méthode par défaut utilisant la catégorie du vehicule afin de caluler un prix.
+Si nous reprenons l'interface **AutoRoute**, nous pouvons ajouter la méthode **calulerPrixPeage** qui sera une méthode par défaut et utilisera la catégorie du vehicule afin de caluler le prix.
 
 ```java
 public interface AutoRoute {
@@ -2160,7 +2162,7 @@ public interface AutoRoute {
 Les classes **PoidsLourd** et **Voiture** ne sont pas obligées de fournir une implémentation à la méthode **calulerPrixPeage**
 
 > Ainsi, il est désormais possible d'ajouter de nouvelles méthodes sur des interfaces sans que cela n'impacte la compilation des applications. 
-> Ce nouveau concept a ainsi permis d'intégrer la philosophie des streams au niveau des collections tout en conservant la rétro compatibilité des classes existantes.liées aux collections.
+> Ce nouveau concept a ainsi permis d'intégrer la philosophie des streams au niveau des collections tout en conservant la rétro compatibilité des classes existantes liées aux collections.
 
 <div style="page-break-before: always"> </div>
 

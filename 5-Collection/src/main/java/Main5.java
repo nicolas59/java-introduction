@@ -14,5 +14,13 @@ public class Main5 {
         for(var country:countries){
             System.out.println(country.name.toUpperCase() + " a pour capitale "+ country.capital);
         }
+
+        var ret = countries.stream()
+                .filter(country -> country.name.equals("France"))
+                .map(country -> country.capital)
+                .findFirst();
+
+            System.out.println(ret.orElse("Inconnu"));
+
     }
 }
