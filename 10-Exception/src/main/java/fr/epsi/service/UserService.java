@@ -1,4 +1,4 @@
-package fr.epsi.servce;
+package fr.epsi.service;
 
 import fr.epsi.domain.User;
 import fr.epsi.exception.UserNotFoundException;
@@ -17,7 +17,7 @@ public class UserService {
     public User findUserById(Long identifier) throws UserNotFoundException{
         User user = this.users.get(identifier);
         if(user == null) {
-            throw new UserNotFoundException();
+            throw new UserNotFoundException(identifier);
         }
         return user;
     }
