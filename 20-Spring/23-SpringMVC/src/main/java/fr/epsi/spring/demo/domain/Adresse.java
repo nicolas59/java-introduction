@@ -1,8 +1,6 @@
-package fr.epsi.spring.base.domain;
+package fr.epsi.spring.demo.domain;
 
 import com.opencsv.bean.CsvBindByName;
-
-import java.util.StringJoiner;
 
 public class Adresse {
 
@@ -27,7 +25,6 @@ public class Adresse {
     public void setDepartement(String departement) {
         this.departement = departement;
     }
-
 }
 
 

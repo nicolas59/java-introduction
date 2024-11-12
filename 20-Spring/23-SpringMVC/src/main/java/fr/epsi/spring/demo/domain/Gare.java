@@ -1,18 +1,17 @@
-package fr.epsi.spring.base.domain;
+package fr.epsi.spring.demo.domain;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvCustomBindByName;
 import com.opencsv.bean.CsvRecurse;
 import com.opencsv.bean.CsvToBean;
-import fr.epsi.spring.base.converter.BooleanConverter;
+import fr.epsi.spring.demo.converter.BooleanConverter;
 
 import java.util.StringJoiner;
 
 public class Gare  {
 
-    //;LIBELLE;FRET;VOYAGEURS;CODE_LIGNE;RG_TRONCON;PK;COMMUNE;
     @CsvBindByName(column = "CODE_UIC")
-    private long id;
+    private Long id;
 
     @CsvBindByName(column = "LIBELLE")
     private String libelle;
@@ -29,7 +28,7 @@ public class Gare  {
     @CsvRecurse
     private Adresse adresse;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -41,7 +40,7 @@ public class Gare  {
         return supportFret;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

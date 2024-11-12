@@ -8,6 +8,7 @@ En partant d'un exemple, nous allons découvrir les annoations à utiliser.
 
 > Les premieres versions de Spring, avant l'avénement des annotations, utilisaient des fichiers xml pour associer les instances entre elles.
 
+
 ## Les annotations @Service, @Component et @Repository
 
 Positionnées au-dessus du nom de la classe, elle indique à Spring que la classe doit être instanciés et qu'elle sera utilisé au sein du contexte de l'application.
@@ -186,8 +187,13 @@ public class Application implements CommandLineRunner {
     }
 }
 ```
+
+Il est impossible de positioner du code dans la méthode main pour utiliser les services que nous venons de créer. 
+Dans notre exemple, la classe implémente l'interface **CommandLineRunner**. 
+
+Cette interface propose la méthode *run* à implémenter. Aprés le chargement de **Spring**, la méthode sera invoquée par l'application en passant en paramétre les arguments passés lors du changement de l'application (ie les mêmes que ceux de la méthode main) 
  
-L'execution de cette classe lancera le programme :
+Ainsi, l'execution de cette classe lancera le programme :
 
 ```shell
 mvn --quiet compile exec:java -Dexec.mainClass=fr.epsi.spring.base.Application

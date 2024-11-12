@@ -1,0 +1,14 @@
+logging:
+    level:
+      root: warn
+      org.springframework.web: debug
+      fr.epsi.spring: debug
+
+demo.file: /liste-des-gares.csv
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+
+springdoc.swagger-ui.path: /swagger-ui.html
