@@ -1,17 +1,17 @@
 # Les enum
 
-Les énumerations sont une nouveau type apparu depuis Java 5. 
-Elles permettent de representer une liste fini d'élements.
+Les énumerations sont un nouveau type apparu depuis Java 5. 
+Elles permettent de représenter une liste finie d'élements.
 
 ## Les caractèristiques
 Les énum peuvent être déclarées à l'intérieur ou à l'extérieur des classes. Elle est définie par le mot clé **enum**. 
 
-Une énumération contient une liste de valeurs figées lors de la compilation. Chaque valeur représent une instance de l'énum.
+Une énumération contient une liste de valeurs figées lors de la compilation. Chaque valeur représente une instance de l'énum.
 
 Une énumération ne peut être altérée lors de l'execution. Elle est implicitement **static** et **final**.
 
-Resemblant à une classe, les contructeurs présents à l'intérieur de l'énumeration ne sont pas accéssible depuis l'extérieur. 
-Uniquement les valeurs définies dans l'énumeration pourront accéder aux divers constructeurs.
+Ressemblant à une classe, les contructeurs présents à l'intérieur de l'énumeration ne sont pas accéssibles depuis l'extérieur. 
+Uniquement les valeurs de l'énumeration pourront accéder aux divers constructeurs afin de s'initialiser.
 
 Une énumaration est **immutable**
 
@@ -28,7 +28,7 @@ public enum Saison {
 }
 ```
 
-Les énurations posséde la méthode **values()** permettant de récupérer un tableau des valeurs constituant l'enumération.
+Les énurations possédent la méthode **values()** permettant de récupérer un tableau des valeurs constituant l'enumération.
 
 Les valeurs de l'énumeration sont des constantes pointant chacune vers un emplacement mémoire spécifique qui ne changera pas pendant l"execution. Ainsi, on peut comparer les énumerations directement avec le comparateur **==**
 
@@ -118,7 +118,7 @@ BLUE[#0000FF]
 
 ## Utilisation du switch case
 
-Les énumérations peuvent être utilisées avec le classique swicth case.
+Les énumérations peuvent être utilisées avec le classique switch case.
 
 Fichier [Exemple3](src/main/java/Exemple3.java)
 

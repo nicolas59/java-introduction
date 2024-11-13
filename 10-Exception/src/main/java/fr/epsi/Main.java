@@ -16,6 +16,7 @@ public class Main {
             System.out.println("Utilisateur : " + otherUser);
         } catch (UserNotFoundException e) {
             System.err.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 }
