@@ -7,6 +7,6 @@ public class MyResource implements AutoCloseable {
 
     @Override
     public void close() {
-        System.out.println("Good bye ! J'ai libéré des ressources");
+        System.out.println("Good bye ! J'ai libéré des ressources. Instance : ");
     }
 }

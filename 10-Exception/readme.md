@@ -167,6 +167,12 @@ public class Main {
 }
 ```
 
+```shell
+mvn --quiet compile exec:java -Dexec.mainClass=fr.epsi.Main2
+Utilisateur : User[identifier=1, firstname=Donald, lastname=Duck]
+Utilisateur 20 non trouvé
+```
+
 Il est possible d'intercepter plusieurs exceptions de 2 manières différents.
 
 Soit en appliquant plusieurs catch à la suite si l'on souhaite réaliser des traitements en fonction des exceptions levées.
@@ -197,12 +203,6 @@ public class Main2 {
         }
     }
 }
-```
-
-```shell
-mvn --quiet compile exec:java -Dexec.mainClass=fr.epsi.Main2
-Utilisateur : User[identifier=1, firstname=Donald, lastname=Duck]
-Utilisateur 20 non trouvé
 ```
 
 Soit en séparant les exceptions par un pipe |. On ne dissocie plus le traitement à réaliser en fonction de l'sxception.

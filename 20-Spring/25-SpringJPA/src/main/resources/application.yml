@@ -1,0 +1,23 @@
+logging:
+    level:
+      root: warn
+      org.springframework.web: debug
+      fr.epsi.spring: debug
+
+
+demo.file: /liste-des-gares.csv
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  liquibase:
+    change-log: db/changelog/db.changelog-master.xml
+
+springdoc.swagger-ui.path: /swagger-ui.html

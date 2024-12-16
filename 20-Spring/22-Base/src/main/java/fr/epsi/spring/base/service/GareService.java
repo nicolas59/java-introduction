@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,5 +23,9 @@ public class GareService {
     public Optional<Gare> findGareByVille(String ville) {
         LOGGER.debug("Rercherche de la gare commencant par {}", ville);
         return this.gareRepository.findGareByVille(ville);
+    }
+
+    public List<Gare> findAll(){
+        return this.gareRepository.findAll();
     }
 }

@@ -21,6 +21,7 @@
         <module>9-Interface</module>
         <module>10-Exception</module>
         <module>20-Spring</module>
+        <module>20-Spring/25-SpringJPA</module>
     </modules>
 
     <properties>

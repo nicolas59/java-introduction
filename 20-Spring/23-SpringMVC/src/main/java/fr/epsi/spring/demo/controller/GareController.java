@@ -18,6 +18,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.awt.print.Book;
 
+/**
+ * Controleur pour gérer les gares.
+ *
+ */
 @RestController
 @RequestMapping(value = "/v1/gares", produces = MediaType.APPLICATION_JSON_VALUE)
 public class GareController {

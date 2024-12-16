@@ -9,7 +9,7 @@ public class Exemple1 {
 
         var automne = Saison.valueOf("AUTOMNE"); // résolution par le nom
 
-        if(saison == Saison.AUTOMNE) {
+        if(saison == automne) {
             System.out.println("C'est bien l'automne");
         }
     }

@@ -25,5 +25,6 @@ public class Exemple2 {
         ColorPanel c = ColorPanel.BLUE;
         System.out.println(c.getHexaCode());
         System.out.println(c);
+
     }
 }

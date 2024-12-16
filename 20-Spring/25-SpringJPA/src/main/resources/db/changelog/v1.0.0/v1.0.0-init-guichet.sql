@@ -1,0 +1,1 @@
+insert into guichet(id, libelle, gare_id, heure_ouverture, heure_fermeture, type) select 1, 'Guichet 1',  gare.id, '10:00:00', '18:00:00', 'NON_AUTOMATE' from gare where uic=87009696;

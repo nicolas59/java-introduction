@@ -1,7 +1,7 @@
 # Les enum
 
-Les énumerations sont un nouveau type apparu depuis Java 5. 
-Elles permettent de représenter une liste finie d'élements.
+L'énumeration est un nouveau type apparu depuis Java 5. 
+Elle permet de représenter une liste finie d'élements.
 
 ## Les caractèristiques
 Les énum peuvent être déclarées à l'intérieur ou à l'extérieur des classes. Elle est définie par le mot clé **enum**. 
@@ -42,7 +42,7 @@ public class Exemple1 {
             System.out.println(s);
         }
 
-        var saison = Saison.AUTOMNE; //resolution pqr une valeur de l'énumération
+        var saison = Saison.AUTOMNE; //resolution par une instance de l'énumération
 
         var automne = Saison.valueOf("AUTOMNE"); // résolution par le nom
 
@@ -71,7 +71,7 @@ L’initialisation des propriétés est réalisée via un constructeur
 
 Afin de respecter le principe de l’énum, ces propriétés :
 * ne doivent pas être modifiable
-* Accessible qu’en lecture
+* sont accessibles qu’en lecture
 
 Un constructeur n’est utilisable qu’à l’intérieur de l’enum.
 

@@ -1,5 +1,6 @@
 package fr.epsi;
 
+import fr.epsi.domain.User;
 import fr.epsi.exception.UserNotFoundException;
 import fr.epsi.service.UserService;
 

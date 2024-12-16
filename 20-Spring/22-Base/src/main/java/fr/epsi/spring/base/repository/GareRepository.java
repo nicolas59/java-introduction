@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,5 +42,9 @@ public class GareRepository {
 
     public Optional<Gare> findGareByVille(String ville) {
         return gares.stream().filter(gare -> gare.getLibelle().startsWith(ville)).findFirst();
+    }
+
+    public List<Gare> findAll(){
+        return new ArrayList<>(gares);
     }
 }
