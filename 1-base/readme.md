@@ -33,7 +33,22 @@ java Helloworld
 
 > En java, toute ligne d'instructions est terminée par un **point virgule**
 
-> Depuis Java 23, il est possible de créer une méthode *main* sans être dans une classe [JEP 477](https://openjdk.org/jeps/477)
+> Depuis Java 25, il est possible de créer une méthode *main* sans être dans une classe [JEP 477](https://openjdk.org/jeps/477)
+
+Fichier **[Helloworld2.java](src/main/java/Helloworld.java)**
+```java
+void main(){
+    var input = IO.readln("Quel est être nom? ");
+    IO.println("Bienvenue " + input);
+}
+```
+
+```shell
+cd src/main/java
+javac Helloworld2.java
+java Helloworld2
+```
+
 
 ### Déclaration d'une variable
 
